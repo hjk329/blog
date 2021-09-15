@@ -1,15 +1,15 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
 
-const BlogForm = ({blog, onSubmit}) => {
+const BlogForm = ({blog={}, onSubmit}) => {
 
   const [values, setValues] = useState({
     title: blog.title || '',
-    content: blog.content || '',
+    content:  blog.content || '',
   })
 
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     onSubmit(values);
   }
 
