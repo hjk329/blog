@@ -7,7 +7,6 @@ import Add from "../pages/Add";
 import Edit from "../pages/Edit";
 import Blog from "../pages/Blog";
 
-
 const Routes = () => {
     return (
         <Container>
