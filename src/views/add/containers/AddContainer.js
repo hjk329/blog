@@ -14,6 +14,7 @@ const AddContainer = () => {
     await addDocument('blog', values);
     history.push('/')
   }
+
   return (
     <Container>
       <PageTitle title={'새 글 작성'}/>

@@ -1,4 +1,4 @@
-import {addDoc, collection, getDocs, serverTimestamp, doc, getDoc, updateDoc} from "firebase/firestore";
+import {addDoc, collection, getDocs, serverTimestamp, doc, getDoc, updateDoc, deleteDoc} from "firebase/firestore";
 import {db} from "./firebase";
 
 export const getDocuments = async (collectionId) => {
@@ -36,7 +36,12 @@ export const getDocument = async (collectionId, documentId) => {
 }
 
 export const editDocument = async (collectionId, documentId, data) => {
-  const editedRef = doc(db, collectionId, documentId);
-  const result = await updateDoc(editedRef,data);
+  const editRef = doc(db, collectionId, documentId);
+  const result = await updateDoc(editRef,data);
+  return result;
+}
+
+export const deleteDocument = async (collectionId, documentId) => {
+  const result = await deleteDoc(doc(db, collectionId, documentId));
   return result;
 }

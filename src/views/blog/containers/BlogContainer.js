@@ -2,8 +2,8 @@ import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
 
 import OneBlog from "../components/OneBlog";
-import {useParams} from "react-router-dom";
-import {getDocument} from "../../../firebase/query";
+import {useHistory, useParams} from "react-router-dom";
+import {deleteDocument, getDocument} from "../../../firebase/query";
 
 const BlogContainer = () => {
 
@@ -23,9 +23,23 @@ const BlogContainer = () => {
     getBlog();
   }, [])
 
+  const history = useHistory()
+
+  const onClickDelete = () => {
+    const result = window.confirm('정말 삭제하시겠습니까?')
+    if(result) {
+      deleteBlog()
+      history.push('/')
+    }
+  }
+  const deleteBlog = async () => {
+    return (await deleteDocument('blog', id))
+  }
     return (
         <Container>
-            <OneBlog blog={blog}/>
+            <OneBlog blog={blog}
+                     onClickDelete={onClickDelete}
+            />
         </Container>
     )
 }
