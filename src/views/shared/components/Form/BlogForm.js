@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
 
-const BlogForm = ({blog={}, onSubmit}) => {
+const BlogForm = ({blog = {}, onSubmit}) => {
 
   const [values, setValues] = useState({
     title: blog.title || '',
-    content:  blog.content || '',
+    content: blog.content || '',
   })
 
   const handleSubmit = (e) => {
@@ -19,18 +19,20 @@ const BlogForm = ({blog={}, onSubmit}) => {
       [e.target.name]: e.target.value
     })
   }
+
   return (
     <Container>
       <form onSubmit={handleSubmit}>
         <FormItem>
           <label htmlFor="title">제목</label>
-          <input type="text" name="title" id=" title" onChange={onChange} value={values.title}/>
+          <input type="text" name="title" id="title" onChange={onChange} value={values.title}/>
         </FormItem>
 
         <FormItem>
-          <label htmlFor=" content">내용</label>
+          <label htmlFor="content">내용</label>
           <textarea name="content" id="content" cols="30" rows="20" onChange={onChange} value={values.content}/>
         </FormItem>
+
         <Button>
           추가하기
         </Button>
@@ -86,7 +88,7 @@ const Button = styled.button`
   justify-content: center;
   width: 170px;
   height: 40px;
-  background: #18f;
+  background: rgb(137, 119, 173);
   color: #fff;
   border-radius: 3px;
   text-transform: uppercase;

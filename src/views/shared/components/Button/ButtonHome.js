@@ -1,16 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import {BsPencil} from "react-icons/bs";
+import {BiHome} from "react-icons/bi";
 import {Link} from "react-router-dom";
 
 
-const ButtonAdd = () => {
-  return (
-    <Container to={'/add'}>
-      <BsPencil/>
-    </Container>
-  )
+const ButtonHome = () => {
+    return (
+        <Container to={'/'}>
+          <BiHome/>
+        </Container>
+    )
 }
 
 const Container = styled(Link)`
@@ -34,4 +34,4 @@ const Container = styled(Link)`
     box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.35);
   }
 `;
-export default ButtonAdd;
+export default ButtonHome;

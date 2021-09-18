@@ -11,8 +11,8 @@ const MainBlogList = ({data =[]}) => {
     return (
         <Container>
           <ContentContainer>
-            <PageTitle title={'Blog'}
-                        subTitle={'전체 블로그 리스트 페이지입니다. 하나하나 소중합니다.'}
+            <PageTitle title={'내돈내산 리뷰 블로그'}
+                        subTitle={'내 돈 (주고) 내(가) 산 물건들에 대한 리뷰를 공유합니다.'}
             />
             <GridList data={data}>
               {(item, index) => <BlogItem index={index} item={item}/>}

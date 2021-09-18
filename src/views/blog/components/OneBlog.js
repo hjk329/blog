@@ -1,23 +1,27 @@
 import React from 'react';
 import styled from 'styled-components';
+import {Link} from "react-router-dom";
 
 import PageTitle from "../../shared/components/Title/PageTitle";
 import {ContentContainer} from "../../shared/components/Layout/Layout.Styled";
-import {Link} from "react-router-dom";
+import ButtonHome from "../../shared/components/Button/ButtonHome";
 
 
 const OneBlog = ({blog, onClickDelete}) => {
   return (
     <Container>
       <ContentContainer>
-        <PageTitle title={'blog'}/>
+        <PageTitle title={'내돈내산 오늘의 물건!'}/>
         <Buttons>
           <Button to={`/edit/${blog.id}`}>수정하기</Button>
           <DeleteButton onClick={onClickDelete}>삭제하기</DeleteButton>
         </Buttons>
         <Title>{blog.title}</Title>
-        <Content>{blog.content}</Content>
+        <Content>
+          {blog.content}
+        </Content>
       </ContentContainer>
+      <ButtonHome/>
     </Container>
   )
 }
@@ -30,6 +34,10 @@ const Title = styled.div`
   font-size: 24px;
   color: #333;
   margin-bottom: 30px;
+`;
+
+const Stars = styled.div`
+
 `;
 
 const Content = styled.p`
@@ -50,10 +58,11 @@ const Button = styled(Link)`
   align-items: center;
   width: 120px;
   height: 36px;
-  background: #46cc35;
+  background: rgb(105, 119, 173);
   color: #fff;
   font-size: 13px;
   margin: 0 20px;
+  border-radius: 6px;
 `;
 
 const DeleteButton = styled.div`
@@ -62,9 +71,11 @@ const DeleteButton = styled.div`
   align-items: center;
   width: 120px;
   height: 36px;
-  background: #46cc35;
+  background: rgb(105, 194, 306);
   color: #fff;
   font-size: 13px;
   cursor: pointer;
+  border-radius: 6px;
+
 `;
 export default OneBlog;
