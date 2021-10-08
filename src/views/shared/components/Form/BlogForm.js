@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
+import ImageUploader from "../ImageUploader";
+import {EditorImage} from "../Editor/Wysiwyg";
 
 const BlogForm = ({blog = {}, onSubmit}) => {
 
@@ -20,23 +22,47 @@ const BlogForm = ({blog = {}, onSubmit}) => {
     })
   }
 
+  const onChangeThumbnail = (url) => {
+    setValues({
+      ...values,
+      thumbnailUrl: url,
+    })
+  }
+
+  const onChangeContentImage = (url) => {
+    setValues({
+      ...values,
+      contentUrl: url,
+    })
+  }
+
   return (
     <Container>
-      <form onSubmit={handleSubmit}>
-        <FormItem>
-          <label htmlFor="title">제목</label>
-          <input type="text" name="title" id="title" onChange={onChange} value={values.title}/>
-        </FormItem>
+        <form onSubmit={handleSubmit}>
+            <FormItem>
+              <label htmlFor="title">제목</label>
+              <input type="text" name="title" id="title" onChange={onChange} value={values.title}/>
+            </FormItem>
 
-        <FormItem>
-          <label htmlFor="content">내용</label>
-          <textarea name="content" id="content" cols="30" rows="20" onChange={onChange} value={values.content}/>
-        </FormItem>
+            <FormItem>
+              <label htmlFor="content">내용</label>
+              <textarea name="content" id="content" cols="30" rows="20" onChange={onChange} value={values.content}/>
+            </FormItem>
 
-        <Button>
-          추가하기
-        </Button>
-      </form>
+            <FormItem>
+              <label>썸네일</label>
+              <ImageUploader onChangeImage={onChangeThumbnail}/>
+            </FormItem>
+
+            <FormItem>
+              <label>컨텐트</label>
+              <ImageUploader onChangeImage={onChangeContentImage}/>
+            </FormItem>
+
+          <Button>
+            추가하기
+          </Button>
+        </form>
     </Container>
   )
 }

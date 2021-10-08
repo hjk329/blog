@@ -18,6 +18,7 @@ const OneBlog = ({blog, onClickDelete}) => {
         </Buttons>
         <Title>{blog.title}</Title>
         <Content>
+          <img src={blog.contentUrl} alt=""/>
           {blog.content}
         </Content>
       </ContentContainer>
@@ -36,15 +37,19 @@ const Title = styled.div`
   margin-bottom: 30px;
 `;
 
-const Stars = styled.div`
-
-`;
-
 const Content = styled.p`
   font-size: 18px;
   color: #333;
   line-height: 1.8;
   white-space: pre-wrap;
+  
+  img {
+    display: inline-block;
+    background: #eee;
+    width: 100%;
+    height: 500px;
+    object-fit: contain;
+  }
 `;
 
 const Buttons = styled.div`
