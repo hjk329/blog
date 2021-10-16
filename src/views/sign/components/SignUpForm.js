@@ -4,11 +4,11 @@ import {useForm} from "react-hook-form";
 import {isEmail, isPassword} from "../../../lib/validation";
 import SignMessage from "./SignMessage";
 
-const SignInForm = ({signIn}) => {
+const SignUpForm = ({signUp}) => {
 
-  const {register, handleSubmit, formState: {errors}} = useForm();
+  const {register, handleSubmit, watch, formState: {errors}} = useForm();
 
-  const onSubmit = (data) => signIn(data)
+  const onSubmit = (data) => signUp(data)
 
   return (
     <Container>
@@ -17,9 +17,9 @@ const SignInForm = ({signIn}) => {
           <Label htmlFor="email">이메일</Label>
           <Input {...register('email', {
             required: true,
-          validate: {
+            validate: {
               isEmail : (v) => isEmail(v)
-          }})}
+            }})}
           />
           <SignMessage type={errors.email?.type}/>
         </FormGroup>
@@ -35,7 +35,18 @@ const SignInForm = ({signIn}) => {
           <SignMessage type={errors.password?.type}/>
         </FormGroup>
 
-        <ButtonLogin>로그인</ButtonLogin>
+        <FormGroup>
+          <Label htmlFor="confirmPassword">비밀번호 다시 입력</Label>
+          <Input {...register('confirmPassword', {
+            required: true,
+            validate: {
+              confirm: (v) => v === watch('password')
+            }
+          })} />
+          <SignMessage type={errors.confirmPassword?.type}/>
+        </FormGroup>
+
+        <ButtonLogin>회원 가입</ButtonLogin>
       </form>
     </Container>
   )
@@ -83,4 +94,4 @@ const ButtonLogin = styled.button`
   cursor: pointer;
 `;
 
-export default SignInForm;
+export default SignUpForm;
