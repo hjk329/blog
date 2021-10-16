@@ -1,11 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import {Link} from "react-router-dom";
-import {useSelector} from "react-redux";
+import { useSelector} from "react-redux";
 
-const Header = () => {
+const Header = ({logOut}) => {
 
   const user = useSelector(state => state.auth.user)
+
   return (
     <Container>
       <TopHeader>
@@ -13,7 +14,7 @@ const Header = () => {
           user ?
             <UserInfoArea>
               <UserInfo>{user.email} 님 안녕하세요!</UserInfo>
-              <ButtonSignOut>로그아웃</ButtonSignOut>
+              <ButtonSignOut onClick={logOut} to={'/'}>로그아웃</ButtonSignOut>
             </UserInfoArea>
             :
             <SignArea>

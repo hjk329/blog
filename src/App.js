@@ -2,12 +2,13 @@ import React, {useEffect} from 'react';
 import styled from 'styled-components';
 import {useDispatch} from "react-redux";
 
-import {onAuthStateChanged } from "firebase/auth";
+import {onAuthStateChanged, signOut} from "firebase/auth";
 import {auth} from "./firebase/firebase";
 import {GlobalStyle} from "./style/GlobalStyle";
 import Routes from "./views/Routes";
 import Header from "./views/shared/components/Header";
 import {setUser} from "./redux/auth/slice";
+import {useHistory} from "react-router-dom";
 
 
 const App = () => {
@@ -25,10 +26,21 @@ const App = () => {
     });
   }, [])
 
+  const history = useHistory()
+
+  const logOut = () => {
+    signOut(auth).then(() => {
+      history.push('/')
+      dispatch(setUser(null))
+    }).catch((error) => {
+      console.log('@@error', error)
+    });
+  }
+
   return (
     <Container>
       <GlobalStyle/>
-      <Header/>
+      <Header logOut={logOut}/>
       <Routes/>
     </Container>
   )
